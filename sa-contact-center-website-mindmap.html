@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SA Roadmap — Contact Center & Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0B1F3A;
+    --navy-800:#0F2A4D;
+    --navy-700:#153862;
+    --navy-600:#1D4A80;
+    --blue-500:#2E6DB4;
+    --blue-100:#E5EEF7;
+    --gold-600:#B8860B;
+    --gold-500:#C9A227;
+    --gold-100:#FBF3DD;
+    --cream:#F6F3EC;
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --ink-soft:#54606F;
+    --ink-faint:#8A93A0;
+    --line:#E2E0D6;
+    --shadow: 0 1px 2px rgba(11,31,58,0.06);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    font-family:'Sarabun',sans-serif;
+    color:var(--ink);
+    line-height:1.7;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+
+  header.hero{
+    background:linear-gradient(180deg,var(--navy-900) 0%,var(--navy-800) 100%);
+    color:#fff;
+    padding:56px 24px 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute;
+    right:-120px;top:-120px;
+    width:360px;height:360px;
+    border:1px solid rgba(201,162,39,0.25);
+    border-radius:50%;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute;
+    right:-40px;top:40px;
+    width:220px;height:220px;
+    border:1px solid rgba(201,162,39,0.18);
+    border-radius:50%;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;position:relative;z-index:1;}
+  .eyebrow{
+    font-family:'Kanit',sans-serif;
+    font-size:13px;
+    letter-spacing:.14em;
+    color:var(--gold-500);
+    font-weight:500;
+    margin:0 0 14px;
+    text-transform:uppercase;
+  }
+  h1{
+    font-family:'Kanit',sans-serif;
+    font-weight:600;
+    font-size:34px;
+    margin:0 0 12px;
+    line-height:1.35;
+  }
+  .hero-sub{
+    font-size:16px;
+    color:rgba(255,255,255,0.75);
+    max-width:660px;
+    margin:0 0 28px;
+  }
+  .stat-row{display:flex;gap:36px;flex-wrap:wrap;margin-top:8px;}
+  .stat b{
+    display:block;
+    font-family:'Kanit',sans-serif;
+    font-size:26px;
+    font-weight:600;
+    color:var(--gold-500);
+  }
+  .stat span{font-size:13px;color:rgba(255,255,255,0.6);}
+
+  .instructions{
+    margin:-36px auto 40px;
+    max-width:1180px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 22px;
+    font-size:14px;
+    color:var(--ink-soft);
+    box-shadow:var(--shadow);
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .instructions .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--gold-500);
+    flex-shrink:0;
+  }
+
+  .group-label{
+    font-family:'Kanit',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    color:var(--blue-500);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin:36px 0 12px;
+  }
+  .group-label:first-of-type{margin-top:0;}
+
+  .branch-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    gap:16px;
+    margin-bottom:8px;
+  }
+  .branch-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:4px solid var(--navy-700);
+    border-radius:10px;
+    padding:18px 20px;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    box-shadow:var(--shadow);
+  }
+  .branch-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(11,31,58,0.08);}
+  .branch-card.active{
+    border-left-color:var(--gold-500);
+    background:var(--navy-900);
+    color:#fff;
+  }
+  .branch-card.active .branch-num{color:var(--gold-500);}
+  .branch-card.active .branch-title{color:#fff;}
+  .branch-card.active .branch-count{color:rgba(255,255,255,0.6);}
+
+  .branch-num{
+    font-family:'Kanit',sans-serif;
+    font-size:12px;
+    font-weight:500;
+    color:var(--blue-500);
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:6px;
+  }
+  .branch-title{
+    font-family:'Kanit',sans-serif;
+    font-size:17px;
+    font-weight:600;
+    color:var(--navy-900);
+    margin:0 0 6px;
+  }
+  .branch-count{font-size:13px;color:var(--ink-faint);}
+
+  .detail-panel{
+    display:none;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-top:20px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .detail-panel.open{display:block;}
+  .detail-header{
+    background:var(--navy-900);
+    color:#fff;
+    padding:22px 26px;
+  }
+  .detail-header h2{
+    font-family:'Kanit',sans-serif;
+    font-size:20px;
+    font-weight:600;
+    margin:0 0 6px;
+  }
+  .detail-header p{
+    margin:0;
+    font-size:14px;
+    color:rgba(255,255,255,0.7);
+  }
+  .item-list{padding:6px 0;}
+  .item-row{border-bottom:1px solid var(--line);}
+  .item-row:last-child{border-bottom:none;}
+  .item-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 26px;
+    cursor:pointer;
+    gap:16px;
+  }
+  .item-head:hover{background:var(--blue-100);}
+  .item-name{
+    font-family:'Kanit',sans-serif;
+    font-weight:500;
+    font-size:15px;
+    color:var(--navy-900);
+  }
+  .item-tag{
+    font-size:12px;
+    color:var(--gold-600);
+    background:var(--gold-100);
+    padding:3px 10px;
+    border-radius:20px;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .chevron{
+    width:9px;height:9px;
+    border-right:1.5px solid var(--ink-faint);
+    border-bottom:1.5px solid var(--ink-faint);
+    transform:rotate(-45deg);
+    transition:transform .15s ease;
+    flex-shrink:0;
+  }
+  .item-row.open .chevron{transform:rotate(45deg);}
+  .item-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+    background:#FCFBF8;
+  }
+  .item-row.open .item-body{max-height:700px;}
+  .item-body-inner{
+    padding:4px 26px 22px 26px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .item-body-inner p{margin:0 0 10px;}
+  .item-body-inner p:last-child{margin-bottom:0;}
+  .example{
+    margin-top:10px;
+    padding:12px 16px;
+    background:var(--blue-100);
+    border-left:3px solid var(--blue-500);
+    border-radius:0 6px 6px 0;
+    font-size:13.5px;
+    color:var(--navy-800);
+  }
+  .example b{color:var(--navy-900);}
+  .vendors{
+    margin-top:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .vendor-chip{
+    font-size:12.5px;
+    background:var(--gold-100);
+    color:var(--gold-600);
+    padding:5px 12px;
+    border-radius:20px;
+    border:1px solid rgba(184,134,11,0.2);
+  }
+
+  footer{
+    text-align:center;
+    padding:32px 24px 0;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+
+  @media (max-width:640px){
+    h1{font-size:26px;}
+    .hero-sub{font-size:14px;}
+    .instructions{margin-top:-24px;font-size:13px;}
+    .detail-header{padding:18px 20px;}
+    .item-head{padding:14px 20px;}
+    .item-body-inner{padding:2px 20px 18px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Solution Architect — Digital Channel</p>
+    <h1>Contact Center &amp; Website<br>(Internet – Intranet)</h1>
+    <p class="hero-sub">แผนที่ความรู้ฉบับขยาย สำหรับ Solution Architect ที่ดูแล Contact Center (Inbound/Outbound), Conversational AI, Website ทั้ง Internet-facing และ Intranet ครอบคลุมระบบจริง มาตรฐาน และ vendor landscape ที่ใช้ในอุตสาหกรรมธนาคาร</p>
+    <div class="stat-row">
+      <div class="stat"><b>14</b><span>สาย (Branch) หลัก</span></div>
+      <div class="stat"><b>75+</b><span>หัวข้อย่อยพร้อมรายละเอียด</span></div>
+      <div class="stat"><b>30+</b><span>ระบบ/มาตรฐาน/ผลิตภัณฑ์จริง</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="instructions"><span class="dot"></span>คลิกที่การ์ดด้านล่างเพื่อเปิดรายละเอียดของแต่ละสาย จากนั้นคลิกหัวข้อย่อยเพื่ออ่านคำอธิบายพร้อมตัวอย่างและรายชื่อระบบ/ผลิตภัณฑ์จริงที่เกี่ยวข้อง</div>
+
+  <div id="groupsWrap"></div>
+
+  <footer>SA Knowledge Map · Contact Center &amp; Website Domain — Expanded Edition</footer>
+</div>
+
+<script>
+const groups = [
+  {
+    label: "Channel Operations",
+    branches: [
+      {
+        title: "Contact Center — Inbound",
+        sub: "ลูกค้าโทรเข้า / ทักแชทเข้ามาหาธนาคาร",
+        items: [
+          {
+            name: "IVR (Interactive Voice Response)",
+            tag: "Self-service",
+            detail: "เมนูกดโต้ตอบอัตโนมัติเมื่อลูกค้าโทรเข้า ใช้ทำ self-service ได้โดยไม่ต้องคุยกับ agent เช่น เช็คยอดเงิน บล็อกบัตร ปรับวงเงิน ระบบต้องเชื่อมกับ Core Banking แบบ real-time ผ่าน API Gateway และต้อง design flow ให้ fallback ไปหา agent ได้เมื่อลูกค้ากดไม่ผ่านหรือขอความช่วยเหลือ",
+            example: "ตัวอย่าง: ลูกค้ากด 1 เพื่อเช็คยอดบัญชี ระบบ IVR ยิง API ไปที่ Core Banking ผ่าน ESB ดึงยอดมาอ่านด้วยเสียงสังเคราะห์ โดยต้องยืนยันตัวตนด้วยเลขบัตรประชาชน + OTP ก่อนเข้าเมนู",
+            vendors: ["Genesys IVR", "Avaya Aura Experience Portal", "Amazon Connect Lex"]
+          },
+          {
+            name: "ACD (Automatic Call Distribution)",
+            tag: "Routing",
+            detail: "Engine ที่จัดคิวและกระจายสายเข้าไปหา agent ที่เหมาะสมที่สุด โดยพิจารณาจาก skill, ภาษา, ผลิตภัณฑ์ที่ agent เชี่ยวชาญ, และเวลาว่าง (skill-based routing) เป็นหัวใจของ SLA การรับสาย (Service Level, Abandon Rate)",
+            example: "สายที่กดเลือกเมนู 'บัตรเครดิต' จะถูก ACD ส่งไปหา agent ทีมบัตรเครดิตโดยเฉพาะ แทนที่จะสุ่มส่งไปทีมทั่วไป ลด Average Handling Time และเพิ่ม First Call Resolution",
+            vendors: ["Genesys Cloud CX Routing", "Cisco UCCE", "NICE CXone ACD"]
+          },
+          {
+            name: "CTI (Computer Telephony Integration)",
+            tag: "Integration",
+            detail: "เทคโนโลยีที่เชื่อมระบบโทรศัพท์กับ Desktop ของ agent ทำให้เกิด Screen-pop คือข้อมูลลูกค้าขึ้นจอ agent อัตโนมัติทันทีที่รับสาย โดยไม่ต้องพิมพ์ค้นหาเอง ช่วยลด Average Handling Time (AHT) ได้มาก",
+            example: "ต้องออกแบบให้ CTI ส่ง Caller ID ไปตรวจสอบกับ CRM/Core Banking ผ่าน API ก่อนหน้าจอ agent จะโหลดเสร็จภายใน 1-2 วินาที ซึ่งเป็น critical NFR ของระบบนี้",
+            vendors: ["Genesys CTI Connector", "Avaya CTI", "Salesforce Open CTI"]
+          },
+          {
+            name: "Omnichannel Inbound",
+            tag: "Channel",
+            detail: "การรวมช่องทางติดต่อทั้งหมด (โทร, Chat, LINE OA, Email, Social Media) เข้าคิวเดียวกัน (Unified Queue) เพื่อให้ agent เห็นประวัติการติดต่อของลูกค้าครบทุกช่องทาง ไม่ใช่แค่ช่องทางเสียงอย่างเดียว",
+            example: "ลูกค้าทักแชทผ่าน LINE OA ของธนาคารถามปัญหา แล้วโทรตามในวันถัดไป agent ที่รับสายควรเห็นประวัติแชทก่อนหน้าด้วย ระบบต้องมี unified customer interaction history",
+            vendors: ["Genesys Cloud CX Digital", "NICE CXone Digital", "Zendesk Talk"]
+          },
+          {
+            name: "Call & Screen Recording",
+            tag: "Compliance",
+            detail: "การบันทึกเสียงสนทนาและ/หรือหน้าจอ agent เพื่อใช้ตรวจสอบคุณภาพและเป็นหลักฐาน ต้องออกแบบตั้งแต่ต้นให้สอดคล้องกับ PDPA คือมี consent แจ้งลูกค้าก่อนบันทึก กำหนด retention period ที่ชัดเจน และเข้ารหัสไฟล์เสียงที่จัดเก็บ",
+            example: "ต้องกำหนด policy ร่วมกับ Compliance เช่น เก็บไฟล์เสียง 90 วัน หลังจากนั้น archive หรือ purge ตามระเบียบ ธปท. และต้อง mask ข้อมูลอ่อนไหว เช่น เลขบัตรเครดิตที่พูดผ่านสาย",
+            vendors: ["NICE Interaction Recording", "Verint Recording", "Genesys Cloud Recording"]
+          },
+          {
+            name: "Case / Ticket Management Integration",
+            tag: "CRM",
+            detail: "การเชื่อมต่อ Contact Center กับระบบ Case Management/CRM เพื่อ track ปัญหาลูกค้าตั้งแต่เปิดเคสจนปิดเคส และส่งต่อระหว่างทีมได้ (escalation) ต้องออกแบบ integration pattern ระหว่าง CC platform กับ CRM ให้ sync แบบ near real-time",
+            example: "ลูกค้าแจ้งปัญหาโอนเงินผิดบัญชี agent เปิด case ใน CRM ทันทีระหว่างคุยสาย และ case ID จะถูกส่งต่อให้ทีม Back Office ดำเนินการ ตาม SLA ที่กำหนด",
+            vendors: ["Salesforce Service Cloud", "Microsoft Dynamics 365 Customer Service", "ServiceNow CSM"]
+          },
+          {
+            name: "Speech Analytics & Sentiment Analysis",
+            tag: "Analytics",
+            detail: "การวิเคราะห์บทสนทนาแบบอัตโนมัติ (แปลงเสียงเป็นข้อความแล้ววิเคราะห์คำสำคัญ อารมณ์ของลูกค้า) เพื่อหา pattern ปัญหาที่เกิดซ้ำ ประเมินคุณภาพ agent และตรวจจับความเสี่ยง (เช่น ลูกค้าขู่ร้องเรียน) แบบ real-time",
+            example: "ระบบตรวจพบคำที่บ่งชี้ความไม่พอใจสูงระหว่างสาย เช่นน้ำเสียงโมโหต่อเนื่อง สามารถแจ้งเตือนหัวหน้าทีมให้เข้าช่วย (real-time alert) ก่อนที่เคสจะบานปลาย",
+            vendors: ["NICE Nexidia Analytics", "CallMiner Eureka", "Verint Speech Analytics"]
+          }
+        ]
+      },
+      {
+        title: "Contact Center — Outbound",
+        sub: "ธนาคารเป็นฝ่ายโทรออก / ส่งข้อความหาลูกค้า",
+        items: [
+          {
+            name: "Dialer (Predictive / Progressive / Preview)",
+            tag: "Core Component",
+            detail: "ระบบโทรออกอัตโนมัติมี 3 โหมดหลัก: Predictive (โทรล่วงหน้าหลายสายพร้อมกันเพื่อให้ agent ไม่ว่าง แต่เสี่ยง abandon call สูง), Progressive (โทรทีละสายทันทีที่ agent ว่าง), Preview (agent เห็นข้อมูลลูกค้าก่อนกดโทรเอง) การเลือกโหมดขึ้นกับ use case",
+            example: "งาน Collection (ทวงหนี้) ของธนาคารมักใช้ Preview Dialer เพราะ agent ต้องอ่าน profile และประวัติหนี้ก่อนโทร ส่วนงาน Telesales จำนวนมากอาจใช้ Progressive เพื่อเพิ่ม productivity",
+            vendors: ["Genesys Outbound Dialer", "Avaya Proactive Contact", "NICE CXone Outbound"]
+          },
+          {
+            name: "Campaign Management",
+            tag: "Marketing/Sales",
+            detail: "ระบบบริหารจัดการรายชื่อลูกค้าเป้าหมายสำหรับแคมเปญโทรออก กำหนดตารางเวลา priority list และวัดผล conversion rate ต้องเชื่อมกับระบบ Customer Segmentation หรือ CRM เพื่อดึง target list",
+            example: "แคมเปญเสนอวงเงินบัตรเครดิตเพิ่มให้ลูกค้ากลุ่ม A ระบบดึง list จาก CRM ตาม criteria ที่ risk team กำหนด แล้วส่งเข้า Dialer พร้อม script ที่ agent ต้องพูด",
+            vendors: ["Salesforce Marketing Cloud", "Adobe Campaign", "SAS Customer Intelligence"]
+          },
+          {
+            name: "Consent & DNC (Do Not Call) Management",
+            tag: "PDPA",
+            detail: "ก่อนโทรออกหรือส่ง SMS/Email การตลาดทุกครั้ง ต้องตรวจสอบ consent ของลูกค้าและ DNC list แบบ real-time ไม่ให้หลุดโทรลูกค้าที่ opt-out ต้องออกแบบให้ 'Fail-safe' คือถ้าเช็คไม่ได้ต้องไม่โทร ไม่ใช่โทรไปก่อน",
+            example: "ลูกค้าเคยกด opt-out จากการตลาดผ่าน Mobile Banking แล้ว ระบบ Outbound ต้อง sync สถานะนี้จาก Consent Management Platform ก่อนดึงเข้า Campaign ทุกครั้ง",
+            vendors: ["OneTrust Consent Management", "Custom Consent API"]
+          },
+          {
+            name: "Outbound Notification (SMS/Voice Blast)",
+            tag: "Notification",
+            detail: "การแจ้งเตือนอัตโนมัติปริมาณมาก เช่น แจ้งเตือนธุรกรรมผิดปกติ แจ้งครบกำหนดชำระ ต่างจาก Campaign ตรงที่มักเป็น transactional ไม่ใช่ marketing และมักต้องการ latency ต่ำ (ส่งเร็วหลัง trigger event)",
+            example: "ระบบ Fraud Detection ตรวจพบธุรกรรมผิดปกติ ยิง event ผ่าน Message Queue ไปยัง Notification Service เพื่อส่ง SMS/โทรแจ้งลูกค้าภายในไม่กี่วินาที",
+            vendors: ["Twilio", "Infobip", "AIS/DTAC/TrueMove SMS Gateway"]
+          },
+          {
+            name: "Blended Agent Operations",
+            tag: "Operations",
+            detail: "รูปแบบการทำงานที่ agent คนเดียวรับได้ทั้งสาย Inbound และ Outbound สลับกันตามปริมาณงาน ณ ขณะนั้น (เมื่อ Inbound น้อย ระบบจะดึง agent มาทำ Outbound แทน) ช่วยเพิ่ม utilization ของทีมและลดต้นทุน seat",
+            example: "ช่วงเช้าที่ inbound call volume ต่ำ ระบบ ACD จะ route agent ว่างไปทำ Outbound Campaign อัตโนมัติ แล้วสลับกลับมารับ Inbound ทันทีที่ queue เริ่มยาวขึ้น",
+            vendors: ["Genesys Blended Routing", "NICE CXone Omni-routing"]
+          }
+        ]
+      },
+      {
+        title: "Conversational AI & Virtual Assistant",
+        sub: "Chatbot, Voicebot และ AI ที่เข้ามาเสริม/แทนที่บางส่วนของ Agent",
+        items: [
+          {
+            name: "AI Chatbot / Virtual Assistant",
+            tag: "Self-service",
+            detail: "ระบบสนทนาอัตโนมัติผ่านข้อความที่ใช้ NLU (Natural Language Understanding) ตีความเจตนาลูกค้า (intent) แล้วตอบหรือ trigger transaction ได้ ต้องออกแบบ fallback path ไปหา agent จริงเมื่อ bot ตอบไม่ได้ (bot-to-agent handoff) พร้อมส่งบริบทการสนทนาที่คุยกับ bot ไปให้ agent ต่อได้ทันที",
+            example: "ลูกค้าถาม 'ทำไมโอนเงินไม่สำเร็จ' ผ่านแชทบอทใน LINE OA ถ้า bot ตีความไม่ได้แม่นยำเกิน threshold ที่กำหนด ระบบต้อง escalate ไปหา agent มนุษย์ พร้อมแนบ log การสนทนาทั้งหมด",
+            vendors: ["Google Dialogflow CX", "Amazon Lex", "Microsoft Azure Bot Service"]
+          },
+          {
+            name: "Bot Framework & NLU Platform",
+            tag: "Platform",
+            detail: "แพลตฟอร์มพื้นฐานสำหรับสร้าง chatbot/voicebot ที่จัดการเรื่อง intent classification, entity extraction, dialog management และ context tracking ต้องเลือกให้เหมาะกับภาษาไทย (Thai NLU) และรองรับ integration กับ Core Banking",
+            example: "การออกแบบ intent 'เช็คยอดเงิน' ต้องรองรับรูปประโยคภาษาไทยหลากหลาย เช่น 'ยอดเงินฉันเหลือเท่าไหร่', 'เช็คบาลานซ์หน่อย' ให้ตีความเป็น intent เดียวกัน",
+            vendors: ["Rasa Open Source", "Google Dialogflow", "IBM Watson Assistant"]
+          },
+          {
+            name: "RAG-based Knowledge Bot",
+            tag: "GenAI",
+            detail: "รูปแบบใหม่ที่ใช้ LLM ร่วมกับ Retrieval-Augmented Generation (RAG) ดึงข้อมูลจากคลังความรู้ภายใน (policy, FAQ, SOP) มาสร้างคำตอบที่แม่นยำและอัปเดตง่ายกว่า rule-based bot แบบเดิม ต้องคิดเรื่อง data governance และป้องกันการตอบข้อมูลผิดพลาด (hallucination) อย่างรัดกุมในบริบทการเงิน",
+            example: "พนักงาน Contact Center พิมพ์ถามระบบ internal knowledge bot ว่า 'ขั้นตอนการอนุมัติวงเงินฉุกเฉินทำอย่างไร' ระบบดึงจาก SOP ล่าสุดมาตอบพร้อมอ้างอิงเอกสารต้นทาง แทนที่จะให้พนักงานค้นเอกสารเอง",
+            vendors: ["Azure OpenAI Service", "Amazon Bedrock", "Custom RAG Pipeline"]
+          },
+          {
+            name: "Voice Bot (Speech-to-Text / Text-to-Speech)",
+            tag: "Voice AI",
+            detail: "การนำ AI มาแทน IVR แบบกดปุ่มเดิม ให้ลูกค้าพูดโต้ตอบกับระบบได้เป็นธรรมชาติ ต้องใช้ Speech-to-Text (STT) แปลงเสียงเป็นข้อความ ประมวลผล intent แล้วใช้ Text-to-Speech (TTS) ตอบกลับ ต้อง tune ให้รองรับสำเนียงและศัพท์เฉพาะทางการเงินภาษาไทย",
+            example: "แทนที่จะกดเมนู 1-2-3 ลูกค้าพูดว่า 'อยากบล็อกบัตรเครดิตของฉัน' ระบบ Voice Bot ตีความและยืนยันตัวตนก่อนดำเนินการบล็อกบัตรให้อัตโนมัติ",
+            vendors: ["Google Cloud Speech-to-Text/TTS", "Azure Speech Services", "Amazon Polly/Transcribe"]
+          },
+          {
+            name: "Bot Governance & Escalation Design",
+            tag: "Governance",
+            detail: "การกำหนดขอบเขตว่า bot ตอบเรื่องใดได้บ้าง เรื่องใดต้อง escalate ไปหามนุษย์ทันที (เช่น เรื่องร้องเรียน เรื่องอ่อนไหวทางการเงิน) และการ monitor คุณภาพคำตอบของ bot อย่างต่อเนื่อง เป็นความรับผิดชอบสำคัญของ SA ในการวาง guardrail",
+            example: "กำหนด policy ว่าหากลูกค้าพิมพ์คำที่บ่งชี้ความเสี่ยงสูง เช่น พูดถึงการฉ้อโกงหรือขู่ทำร้ายตัวเอง ระบบต้อง escalate ไปหา agent ทันทีโดยไม่ให้ bot พยายามตอบต่อ",
+            vendors: ["Custom Guardrail Rules", "Genesys Bot Flow Governance"]
+          }
+        ]
+      },
+      {
+        title: "Workforce & Quality Management (WFM/QM)",
+        sub: "ระบบบริหารกำลังคนและคุณภาพงานของ Contact Center",
+        items: [
+          {
+            name: "Workforce Management (WFM)",
+            tag: "Planning",
+            detail: "ระบบพยากรณ์ปริมาณงาน (forecasting) และจัดตารางกะ (scheduling) ของ agent ให้สอดคล้องกับ call volume ที่คาดการณ์ไว้ในแต่ละช่วงเวลา เพื่อรักษา Service Level โดยไม่ over-staff จนต้นทุนสูงเกินไป",
+            example: "WFM คาดการณ์ว่าวันจันทร์ต้นเดือน (วันเงินเดือนออก) จะมี call volume สูงกว่าปกติ 40% ระบบจึงจัดตารางกะให้มี agent ว่างเพิ่มขึ้นในช่วงเวลานั้นล่วงหน้า",
+            vendors: ["NICE WFM", "Verint Workforce Management", "Calabrio ONE"]
+          },
+          {
+            name: "Quality Management & Interaction Analytics",
+            tag: "Quality",
+            detail: "ระบบสุ่มตรวจสอบคุณภาพการให้บริการของ agent ผ่านการฟัง/อ่าน interaction พร้อม scorecard ประเมินผล และเชื่อมกับ Speech Analytics เพื่อ auto-flag การสนทนาที่มีความเสี่ยง (เช่น ไม่แจ้ง disclaimer ตามที่ ธปท. กำหนด)",
+            example: "ระบบ auto-flag สายที่ agent ขายผลิตภัณฑ์ประกันโดยไม่ได้พูดประโยค disclaimer ตาม script ที่กำหนด ส่งให้หัวหน้าทีมตรวจสอบและ coaching เพิ่มเติม",
+            vendors: ["NICE Quality Central", "Verint Quality Management", "CallMiner"]
+          },
+          {
+            name: "Agent Desktop / Unified Workspace",
+            tag: "Agent Experience",
+            detail: "หน้าจอทำงานเดียวของ agent ที่รวม CTI screen-pop, CRM, Knowledge Base, และ Case Management เข้าด้วยกัน ลดการสลับหน้าจอไปมา (screen switching) ซึ่งเป็นสาเหตุหลักของ Average Handling Time ที่สูง",
+            example: "Agent เห็นข้อมูลลูกค้า ประวัติการติดต่อ และปุ่มเปิด case ทั้งหมดในหน้าจอเดียว โดยไม่ต้องสลับไปเปิดระบบ CRM แยกต่างหาก",
+            vendors: ["Salesforce Service Console", "Genesys Agent Workspace", "NICE CXone Agent"]
+          },
+          {
+            name: "Coaching & Performance Dashboard",
+            tag: "Management",
+            detail: "Dashboard ติดตามผลงาน agent รายบุคคลและทีม เชื่อมโยงกับผลจาก QM/Speech Analytics เพื่อวางแผน coaching เป็นรายบุคคล และ track improvement over time",
+            example: "หัวหน้าทีมเห็น dashboard ว่า agent คนใดมี AHT สูงกว่าค่าเฉลี่ยทีมต่อเนื่อง 2 สัปดาห์ ระบบ flag ให้เข้า coaching session พร้อมตัวอย่างสายที่ควรปรับปรุง",
+            vendors: ["NICE Performance Management", "Power BI Dashboard"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    label: "Web & Digital Presence",
+    branches: [
+      {
+        title: "Website — Internet-facing",
+        sub: "หน้าเว็บสาธารณะที่ลูกค้า/บุคคลทั่วไปเข้าถึงได้",
+        items: [
+          {
+            name: "Corporate Website / Landing Pages",
+            tag: "Public",
+            detail: "เว็บไซต์หลักของธนาคารสำหรับข้อมูลผลิตภัณฑ์ ข่าวสาร และ landing page แคมเปญ มักใช้ CMS (Content Management System) ให้ทีม Marketing แก้ไขเนื้อหาเองได้โดยไม่ต้อง deploy code ใหม่ทุกครั้ง",
+            example: "ทีม Marketing สร้างหน้าโปรโมชันสินเชื่อใหม่ผ่าน CMS ได้เอง โดย SA ต้องออกแบบให้ CMS แยก zone จากระบบ transactional เพื่อความปลอดภัยและ performance",
+            vendors: ["Adobe Experience Manager", "Sitecore", "Contentful (Headless CMS)"]
+          },
+          {
+            name: "Internet Banking Portal",
+            tag: "Transactional",
+            detail: "ระบบทำธุรกรรมออนไลน์ผ่านเว็บ ต้องมี security สูงสุดในกลุ่ม Internet-facing เพราะเชื่อมตรงกับ Core Banking ผ่าน API Gateway มี MFA (Multi-Factor Authentication), session management ที่รัดกุม และ transaction limit ตามความเสี่ยง",
+            example: "การโอนเงินผ่าน Internet Banking ต้องยืนยันด้วย OTP/biometric ทุกครั้งที่เกินวงเงินที่กำหนด และ session ต้อง timeout อัตโนมัติหากไม่มีการใช้งาน",
+            vendors: ["Backbase Digital Banking", "Temenos Infinity", "Custom Web App on K8s"]
+          },
+          {
+            name: "Open API Developer Portal",
+            tag: "API Economy",
+            detail: "พอร์ทัลสำหรับ third-party developer มาลงทะเบียนใช้ Open Banking API ของธนาคาร ต้องมีระบบ API Key/OAuth2 management, sandbox สำหรับทดสอบ, rate limiting และ monitoring การใช้งานของแต่ละ partner",
+            example: "Fintech partner ขอเชื่อม API ตรวจสอบยอดบัญชีลูกค้า (ด้วย consent ของลูกค้า) ต้องผ่านการลงทะเบียนใน Developer Portal และปฏิบัติตามมาตรฐาน ISO 20022 / Open Banking framework",
+            vendors: ["Apigee Developer Portal", "Kong Developer Portal", "WSO2 API Manager"]
+          },
+          {
+            name: "WAF / Bot Management / DDoS Protection",
+            tag: "Edge Security",
+            detail: "ชั้นความปลอดภัยแรกสุดก่อนเข้าถึงเว็บ WAF (Web Application Firewall) กรอง traffic อันตราย เช่น SQL Injection, XSS ส่วน Bot Management ป้องกัน credential stuffing และ DDoS protection ป้องกันการโจมตีที่ทำให้ระบบล่ม",
+            example: "ทุก request จาก Internet ผ่าน WAF ก่อนเข้าถึง DMZ เสมอ และตั้ง rate limit ป้องกัน brute-force การเดารหัส login",
+            vendors: ["Cloudflare WAF", "F5 BIG-IP ASM", "Akamai Kona Site Defender"]
+          },
+          {
+            name: "CDN (Content Delivery Network)",
+            tag: "Performance",
+            detail: "กระจาย static content (รูปภาพ, CSS, JS) ไปยัง edge server ใกล้ผู้ใช้ ลด latency และลด load ของ origin server ต้องคิดเรื่อง cache invalidation strategy เมื่อมีการอัปเดตเนื้อหา",
+            example: "หน้า landing page แคมเปญที่มี traffic สูงช่วงเปิดตัว ควร cache ผ่าน CDN เพื่อไม่ให้ origin server ล่มจาก traffic spike",
+            vendors: ["Cloudflare CDN", "Akamai", "AWS CloudFront"]
+          },
+          {
+            name: "DMZ Zoning",
+            tag: "Network Security",
+            detail: "หลักการแบ่งเขตเครือข่ายสำหรับระบบที่เชื่อมกับ Internet ต้องมี DMZ (Demilitarized Zone) เป็นชั้นกลางระหว่าง Internet และ Internal Network ห้ามให้ traffic จาก Internet เข้าถึง Internal Zone (Core Banking) โดยตรงเด็ดขาด ต้องผ่าน API Gateway/Reverse Proxy เท่านั้น",
+            example: "Internet Banking Portal วางอยู่ใน DMZ ส่วน Core Banking อยู่ใน Internal Zone การเชื่อมต่อระหว่างสองโซนต้องผ่าน Firewall + API Gateway ที่ควบคุม whitelist endpoint อย่างเข้มงวด ตรงกับหลักการ Confidentiality-Integrity-Availability ที่ธนาคารส่วนใหญ่ยึดถือ",
+            vendors: ["F5 Reverse Proxy", "NGINX Plus", "Palo Alto Firewall"]
+          }
+        ]
+      },
+      {
+        title: "Website — Intranet",
+        sub: "ระบบภายในสำหรับพนักงานธนาคาร",
+        items: [
+          {
+            name: "Employee Portal / Internal Tools",
+            tag: "Internal",
+            detail: "พอร์ทัลรวมระบบภายในสำหรับพนักงาน เช่น ระบบเบิกจ่าย ระบบขออนุมัติ dashboard ต่างๆ ต้องเชื่อม authentication กับระบบ Active Directory ขององค์กรเพื่อ Single Sign-On",
+            example: "พนักงานธนาคาร login ครั้งเดียวผ่าน AD account แล้วเข้าถึง Internal Portal, HR System, Ticketing System ได้โดยไม่ต้อง login ซ้ำ (SSO)",
+            vendors: ["Microsoft SharePoint", "Atlassian Confluence", "ServiceNow Employee Portal"]
+          },
+          {
+            name: "HR Self-Service / Knowledge Base",
+            tag: "Employee Experience",
+            detail: "ระบบให้พนักงานจัดการข้อมูลตัวเอง (ลา, สลิปเงินเดือน) และคลังความรู้ภายใน (SOP, policy documents) ต้องคิดเรื่อง search capability และ access control ตามระดับตำแหน่ง",
+            example: "SOP การอนุมัติสินเชื่อของแต่ละ segment จัดเก็บใน Knowledge Base ที่พนักงานสาขาเข้าถึงได้ แต่ต้องควบคุมสิทธิ์ตาม role ไม่ให้เห็นเอกสารที่ไม่เกี่ยวข้อง",
+            vendors: ["Workday", "SAP SuccessFactors", "Confluence Knowledge Base"]
+          },
+          {
+            name: "Internal Network Segmentation",
+            tag: "Network Security",
+            detail: "การแบ่ง network zone ภายในองค์กรตาม department หรือ sensitivity ของข้อมูล แม้จะเป็น trust boundary ที่สูงกว่า Internet-facing แต่ยังต้องมี segmentation ป้องกัน lateral movement หากมี breach เกิดขึ้น",
+            example: "Network ของทีม IT Infra แยกจาก Network ของสาขาธนาคาร แม้อยู่ใน intranet เดียวกัน เพื่อจำกัดความเสียหายหากมี malware แพร่กระจาย",
+            vendors: ["Cisco ISE (Network Access Control)", "VMware NSX Microsegmentation"]
+          },
+          {
+            name: "SSO สำหรับพนักงาน (AD/LDAP)",
+            tag: "Authentication",
+            detail: "Single Sign-On ผ่าน Active Directory/LDAP เป็นมาตรฐานของระบบ Intranet ต้องออกแบบให้รองรับ SAML หรือ OIDC เพื่อเชื่อมกับ application ต่างๆ และรองรับ MFA สำหรับระบบที่มีความอ่อนไหวสูง เช่น ระบบอนุมัติสินเชื่อ",
+            example: "พนักงานที่เข้าถึงระบบอนุมัติสินเชื่อวงเงินสูง ต้องผ่าน MFA เพิ่มเติมนอกเหนือจาก SSO ปกติ ตาม policy ควบคุมความเสี่ยงภายใน",
+            vendors: ["Microsoft Entra ID (Azure AD)", "Okta", "Ping Identity"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    label: "Core Banking & Financial Standards",
+    branches: [
+      {
+        title: "Core Banking & Payment Standards",
+        sub: "ระบบและมาตรฐานการชำระเงินจริงที่ Contact Center/Website ต้องเชื่อมต่อ",
+        items: [
+          {
+            name: "Core Banking Systems",
+            tag: "System of Record",
+            detail: "ระบบแกนกลางที่เก็บข้อมูลบัญชี ยอดเงิน และประมวลผลธุรกรรมของธนาคาร เป็นปลายทางสุดท้ายที่ทุก channel (Contact Center, Web, Mobile) ต้องเชื่อมต่อผ่าน API/Middleware เสมอ ไม่มี channel ใดยิงตรงเข้าถึงฐานข้อมูล core ได้โดยตรง",
+            example: "ทั้ง IVR, Internet Banking, และ Mobile App ต่างเรียก 'Balance Inquiry Service' เดียวกันที่ห่อหุ้ม (wrap) การเรียก Core Banking ไว้ ทำให้ logic การคำนวณยอดคงที่อยู่จุดเดียว",
+            vendors: ["Temenos T24/Transact", "Oracle FLEXCUBE", "Finacle by Infosys"]
+          },
+          {
+            name: "ISO 20022 Messaging Standard",
+            tag: "Standard",
+            detail: "มาตรฐานข้อความทางการเงินสากลรูปแบบ XML/JSON ที่ใช้แทนที่มาตรฐานเก่าอย่าง SWIFT MT ในการส่งข้อมูลธุรกรรมระหว่างระบบ ทำให้ระบบต่างธนาคาร/ต่างประเทศสื่อสารกันได้ด้วยโครงสร้างข้อมูลเดียวกัน SA ควรเข้าใจโครงสร้างเบื้องต้นของ message type หลัก เช่น pain (payment initiation), pacs (payment clearing)",
+            example: "เมื่อออกแบบ API สำหรับการโอนเงินระหว่างธนาคาร ควรอ้างอิงโครงสร้างข้อมูลตาม ISO 20022 pain.001 (Customer Credit Transfer Initiation) เพื่อให้ interoperable กับระบบภายนอก",
+            vendors: ["ISO 20022 Standard (มาตรฐานกลาง ไม่ใช่ผลิตภัณฑ์)"]
+          },
+          {
+            name: "SWIFT (International Payment Messaging)",
+            tag: "Cross-border",
+            detail: "เครือข่ายมาตรฐานสำหรับส่งข้อความทางการเงินระหว่างธนาคารทั่วโลก ใช้สำหรับธุรกรรมโอนเงินระหว่างประเทศ (Trade Finance, International Wire Transfer) Contact Center ที่รองรับลูกค้าโอนเงินต่างประเทศต้องเข้าใจ flow และ timeline ของ SWIFT เพื่อตอบคำถามลูกค้าได้ถูกต้อง",
+            example: "ลูกค้าโทรถามว่าทำไมเงินโอนไปต่างประเทศยังไม่เข้าบัญชีปลายทาง agent ต้องเข้าใจว่ากระบวนการผ่าน SWIFT มี intermediary bank และใช้เวลา 1-3 วันทำการ ไม่ใช่ real-time เหมือนโอนในประเทศ",
+            vendors: ["SWIFTNet", "SWIFT Alliance Gateway"]
+          },
+          {
+            name: "Domestic Payment Rails",
+            tag: "Real-time Payment",
+            detail: "ระบบการชำระเงินภายในประเทศที่ทำงานแบบ real-time หรือ near real-time เช่น พร้อมเพย์ (คิวอาร์โค้ด/เบอร์โทร/เลขบัตรประชาชน), BAHTNET (โอนเงินมูลค่าสูงระหว่างธนาคาร), ITMX (เคลียริ่งระหว่างธนาคาร) SA ต้องเข้าใจว่าธุรกรรมแต่ละประเภทวิ่งผ่าน rail ไหน เพื่อ design timeout/retry ให้เหมาะสม",
+            example: "การโอนเงินผ่านพร้อมเพย์ที่ทำผ่าน Internet Banking ต้อง design ให้ตอบสนองภายในไม่กี่วินาที (real-time) ต่างจากการโอนเงินมูลค่าสูงผ่าน BAHTNET ที่มี cut-off time และ settlement รอบเวลาที่ต่างออกไป",
+            vendors: ["PromptPay (NITMX)", "BAHTNET (BOT)", "ITMX Interbank Clearing"]
+          },
+          {
+            name: "Card Payment Networks",
+            tag: "Card Scheme",
+            detail: "เครือข่ายบัตรเครดิต/เดบิตที่ทำหน้าที่ authorize และ clear ธุรกรรมบัตร Contact Center ที่รับแจ้งเรื่องบัตรเครดิต (บัตรหาย, ธุรกรรมผิดปกติ) ต้องเข้าใจ flow การ block/dispute ธุรกรรมผ่าน card scheme เหล่านี้",
+            example: "ลูกค้าแจ้งบัตรหาย agent ต้อง block บัตรทันทีในระบบ Core และแจ้งเตือนไปยัง card scheme เพื่อป้องกันการใช้งานธุรกรรมใหม่ พร้อมเปิด case สำหรับออกบัตรใหม่",
+            vendors: ["Visa", "Mastercard", "UnionPay International"]
+          }
+        ]
+      },
+      {
+        title: "Open Banking & API Economy",
+        sub: "การเปิด API ให้บุคคลภายนอกเชื่อมต่อ ตามแนวโน้ม Open Banking",
+        items: [
+          {
+            name: "Open Banking Reference Models",
+            tag: "Standard",
+            detail: "แนวคิดการเปิดให้ third-party (fintech, merchant) เข้าถึงข้อมูลบัญชีลูกค้าได้ด้วยความยินยอมของลูกค้าเอง ผ่าน API มาตรฐาน โดยมี UK Open Banking และ PSD2 ของยุโรปเป็น reference model ที่หลายประเทศใช้อ้างอิงออกแบบมาตรฐานของตนเอง",
+            example: "การออกแบบ Consent Flow ให้ลูกค้ายินยอมให้แอปจัดการการเงินส่วนบุคคล (PFM) เข้าถึงข้อมูลยอดบัญชีของตน ควรอ้างอิงหลักการ explicit consent และ time-bound access ตามแนว Open Banking",
+            vendors: ["UK Open Banking Standard", "PSD2 (EU Directive)"]
+          },
+          {
+            name: "API Gateway / API Management Platform",
+            tag: "Core Infrastructure",
+            detail: "แพลตฟอร์มที่ควบคุมการเข้าถึง API ทั้งหมด ทำหน้าที่ authentication, rate limiting, API versioning, analytics และ developer portal เป็นจุดเดียวที่ third-party และ internal channel ทุกตัวต้องผ่านก่อนเข้าถึง backend",
+            example: "การเปิด API ใหม่ให้ partner ทุกตัวต้องลงทะเบียนผ่าน API Gateway ก่อน ซึ่งจะบังคับ rate limit และ log การเรียกใช้ทุกครั้งเพื่อ audit",
+            vendors: ["Kong Gateway", "Google Apigee", "MuleSoft Anypoint Platform"]
+          },
+          {
+            name: "Consent & Account Aggregation",
+            tag: "Data Sharing",
+            detail: "ระบบจัดการความยินยอมของลูกค้าในการแชร์ข้อมูลบัญชีให้ third-party และการรวมข้อมูลบัญชีจากหลายธนาคารมาแสดงในที่เดียว (account aggregation) ต้องออกแบบให้ลูกค้าเพิกถอนความยินยอมได้ทุกเมื่อ",
+            example: "แอป Personal Finance Management ดึงยอดบัญชีจากหลายธนาคารมาแสดงรวมกัน โดยแต่ละธนาคารต้องมี Consent Management ที่ยืนยันว่าลูกค้ายินยอมจริง และ log ทุกครั้งที่มีการเข้าถึงข้อมูล",
+            vendors: ["TrueLayer", "Plaid (Reference Model)", "Custom Consent Service"]
+          },
+          {
+            name: "Payment Initiation Service (PIS) / Account Information Service (AIS)",
+            tag: "Open Banking API",
+            detail: "สอง API pattern หลักของ Open Banking: PIS ให้ third-party สั่งโอนเงินแทนลูกค้าได้ (ด้วย consent), AIS ให้ third-party ดึงข้อมูลบัญชี/ธุรกรรมได้อย่างเดียว (read-only) ทั้งสองแบบต้องมี security level ต่างกัน โดย PIS ต้องเข้มงวดกว่ามาก",
+            example: "Merchant ใช้ PIS API ให้ลูกค้าจ่ายเงินตรงจากบัญชีธนาคารโดยไม่ต้องผ่านบัตรเครดิต ต้อง design ด้วย strong customer authentication (SCA) ทุกครั้งที่มีการสั่งโอน",
+            vendors: ["Open Banking PIS/AIS APIs (Reference Pattern)"]
+          },
+          {
+            name: "Developer Sandbox & API Monetization",
+            tag: "Ecosystem",
+            detail: "สภาพแวดล้อมทดสอบ (sandbox) ที่ให้ third-party developer ทดลองเรียก API ก่อนขึ้น production จริง และแนวคิดการสร้างรายได้จาก API (เช่น เรียกเก็บค่าธรรมเนียมตาม transaction volume) เป็นส่วนหนึ่งของ API Economy ที่ SA ต้องเข้าใจ business model",
+            example: "Partner ใหม่ทดสอบเชื่อมต่อ API เช็คยอดบัญชีใน sandbox ที่ใช้ข้อมูล mock ก่อน แล้วจึงขอ production key พร้อมทำสัญญาการใช้งานและอัตราค่าธรรมเนียมตาม transaction volume",
+            vendors: ["Apigee Monetization", "Kong Developer Portal"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    label: "Foundation & Governance",
+    branches: [
+      {
+        title: "Integration Architecture & Patterns",
+        sub: "จุดเชื่อมต่อและ pattern ที่ทำให้ระบบทั้งหมดทำงานร่วมกันอย่างมั่นคง",
+        items: [
+          {
+            name: "API Gateway / ESB / Middleware",
+            tag: "Core Pattern",
+            detail: "ชั้นกลางที่ควบคุมการเชื่อมต่อระหว่าง Front-end channel (Web, Contact Center) กับ Core Banking ทำหน้าที่ authentication, rate limiting, protocol transformation, และ logging ไม่ให้ channel ใดยิงตรงเข้า Core Banking",
+            example: "ทั้ง Internet Banking, Contact Center IVR, และ Mobile App ต่างเรียกใช้ API เดียวกันผ่าน API Gateway เพื่อดึงยอดบัญชี ทำให้ business logic อยู่ที่เดียว ไม่กระจัดกระจาย",
+            vendors: ["IBM App Connect Enterprise (ESB)", "MuleSoft", "Kong Gateway"]
+          },
+          {
+            name: "Core Banking Integration",
+            tag: "Backend",
+            detail: "การเชื่อมต่อกับระบบ Core Banking เพื่อดึงข้อมูลบัญชี ยอดเงิน ทำธุรกรรม มักผ่าน API มาตรฐาน (REST/SOAP) หรือ Message Queue สำหรับ transaction แบบ asynchronous ต้องคิดเรื่อง transaction consistency และ idempotency",
+            example: "การโอนเงินต้องออกแบบให้ idempotent คือถ้า request ซ้ำ (เช่น network timeout แล้ว retry) ต้องไม่โอนซ้ำสองครั้ง เป็นหลักการสำคัญที่ต้อง enforce ในทุก integration ที่แตะเงิน",
+            vendors: ["REST/SOAP API", "IBM MQ", "Apache Kafka"]
+          },
+          {
+            name: "CRM Integration (Screen-Pop)",
+            tag: "Customer 360",
+            detail: "การเชื่อม Contact Center/Website กับ CRM เพื่อให้ได้ภาพ Customer 360 องศา รวมประวัติการติดต่อทุกช่องทาง เป็นหัวใจของ Omnichannel Experience",
+            example: "agent เห็นได้ว่าลูกค้าคนนี้เคยติดต่อผ่าน Chat, เคย login Internet Banking ล่าสุดเมื่อไหร่ และมี case ค้างอยู่หรือไม่ ทั้งหมดในหน้าจอเดียว",
+            vendors: ["Salesforce Service Cloud", "Microsoft Dynamics 365"]
+          },
+          {
+            name: "Message Queue / Event Streaming",
+            tag: "Async Pattern",
+            detail: "ใช้สำหรับสื่อสารแบบ asynchronous ระหว่างระบบ เช่น เหตุการณ์ธุรกรรมที่ต้อง trigger การแจ้งเตือนหลายระบบพร้อมกัน โดยไม่ทำให้ระบบต้นทางต้องรอ (decoupling) เป็น pattern สำคัญของสถาปัตยกรรม event-driven",
+            example: "Transaction event ธุรกรรมผิดปกติถูกส่งเข้า topic เดียว แล้วมีทั้ง Notification Service, Fraud Detection, และ Contact Center Case Creation Service subscribe ไปประมวลผลพร้อมกันแบบ independent",
+            vendors: ["Apache Kafka", "RabbitMQ", "AWS SQS/SNS"]
+          },
+          {
+            name: "Authentication (SSO, OAuth2, OIDC, SAML)",
+            tag: "Security",
+            detail: "มาตรฐานการยืนยันตัวตนที่ต้องเลือกใช้ให้เหมาะกับบริบท: OAuth2/OIDC เหมาะกับ API และ modern web/mobile app, SAML มักใช้กับระบบ enterprise เก่า/SSO องค์กร ต้องเข้าใจ token lifecycle และ refresh token strategy",
+            example: "Open API Portal ใช้ OAuth2 client credentials flow ให้ partner ขอ access token ส่วน Employee Portal ใช้ SAML เชื่อมกับ AD ที่มีอยู่แล้วขององค์กร",
+            vendors: ["Keycloak", "Okta", "Microsoft Entra ID"]
+          },
+          {
+            name: "Resilience Patterns (Circuit Breaker, Retry, Saga)",
+            tag: "Design Pattern",
+            detail: "รูปแบบการออกแบบให้ระบบทนต่อความล้มเหลวของ service ปลายทาง เช่น Circuit Breaker หยุดยิง request ไปหา service ที่ล่มซ้ำๆ ชั่วคราว, Retry with Backoff ลองใหม่แบบเว้นช่วงเวลาห่างขึ้นเรื่อยๆ, Saga Pattern จัดการ transaction ที่ข้ามหลาย service ให้ rollback ได้อย่างสอดคล้องกัน",
+            example: "เมื่อ Core Banking ตอบช้าผิดปกติ Circuit Breaker จะ 'เปิดวงจร' หยุดยิง request ชั่วคราวและตอบ error ที่ชัดเจนให้ agent แทนที่จะปล่อยให้ agent รอค้างจนหน้าจอค้าง",
+            vendors: ["Resilience4j", "Netflix Hystrix (Legacy Pattern)", "Istio Service Mesh"]
+          },
+          {
+            name: "ETL / Data Pipeline for Reporting",
+            tag: "Data Integration",
+            detail: "การดึงข้อมูลจากหลายระบบ (Contact Center, Web, Core Banking) มารวมเพื่อทำ reporting และ analytics ต้องออกแบบ pipeline ที่ไม่กระทบ performance ของระบบ production",
+            example: "ข้อมูล interaction ของ Contact Center ถูกดึงเข้า Data Warehouse ทุกคืนผ่าน batch job เพื่อสร้าง dashboard วิเคราะห์แนวโน้มปัญหาลูกค้ารายเดือน โดยไม่กระทบ transaction จริงในช่วงกลางวัน",
+            vendors: ["Apache NiFi", "Apache Airflow", "Talend"]
+          }
+        ]
+      },
+      {
+        title: "Security, Identity & Compliance",
+        sub: "กฎเกณฑ์ มาตรฐาน และสถาปัตยกรรมความปลอดภัยที่แตะบ่อยที่สุด",
+        items: [
+          {
+            name: "PDPA (พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล)",
+            tag: "Regulation",
+            detail: "ครอบคลุมทั้งการบันทึกเสียงสนทนา (ต้องมี consent), การเก็บข้อมูลลูกค้าใน CRM/Web (ต้องมี privacy notice และสิทธิ์ขอลบข้อมูล), และการส่ง marketing (ต้องมี opt-in/opt-out ที่ชัดเจน) ต้องออกแบบ data flow ให้ตรวจสอบและลบข้อมูลได้ตามคำขอ",
+            example: "ลูกค้าขอใช้สิทธิ์ 'Right to be forgotten' ระบบ Contact Center ต้องสามารถ mask/ลบ recording และข้อมูลใน CRM ได้ตามกระบวนการที่กำหนด โดยยังต้อง comply กับกฎหมายอื่นที่บังคับให้เก็บบางข้อมูลไว้",
+            vendors: ["OneTrust", "Custom PDPA Compliance Module"]
+          },
+          {
+            name: "PCI DSS",
+            tag: "Card Data Security",
+            detail: "มาตรฐานความปลอดภัยสำหรับข้อมูลบัตรเครดิต/เดบิต หากมีจุดใดใน Contact Center หรือ Website ที่รับ/ประมวลผลเลขบัตร ต้องแยก scope (PCI Zone) ออกจากระบบอื่น และห้ามเก็บ CVV เต็มรูปแบบเด็ดขาด",
+            example: "IVR ที่รับชำระค่าบัตรเครดิตด้วยการกดเลขบัตรผ่านโทรศัพท์ (DTMF) ต้องออกแบบให้เสียง DTMF ไม่ถูกบันทึกปนกับเสียงสนทนาปกติ (DTMF masking) เพื่อไม่ให้เลขบัตรหลุดเข้าไปในไฟล์ recording",
+            vendors: ["Semafone (DTMF Masking)", "PCI-DSS Standard (มาตรฐานกลาง)"]
+          },
+          {
+            name: "BOT Regulation (ธปท.)",
+            tag: "Regulator",
+            detail: "ระเบียบธนาคารแห่งประเทศไทยเกี่ยวกับการให้บริการทางการเงินผ่านช่องทางต่างๆ รวมถึงการขายผลิตภัณฑ์ทางโทรศัพท์ที่ต้องมีการบันทึกยินยอมอย่างชัดเจน (market conduct)",
+            example: "การขายประกันผ่าน Outbound call ต้องมีสคริปต์บันทึกการยินยอมของลูกค้าอย่างชัดเจนตามหลัก Market Conduct ของ ธปท. เพื่อป้องกันการร้องเรียนภายหลัง",
+            vendors: ["ธปท. Regulation (หน่วยงานกำกับ ไม่ใช่ผลิตภัณฑ์)"]
+          },
+          {
+            name: "Identity & Access Management (IAM/PAM)",
+            tag: "Access Control",
+            detail: "ระบบบริหารสิทธิ์การเข้าถึงของทั้งพนักงานและระบบ โดย IAM ดูแลสิทธิ์การเข้าถึง application ทั่วไป ส่วน PAM (Privileged Access Management) ดูแลบัญชีที่มีสิทธิ์สูง เช่น admin ของ Core Banking ที่ต้อง log และ approve ทุกครั้งที่ใช้งาน",
+            example: "วิศวกรที่ต้อง login เข้า production database ของ Core Banking ต้องผ่าน PAM ที่บังคับให้ขออนุมัติก่อนใช้งานทุกครั้ง และบันทึก session การใช้งานทั้งหมดไว้ตรวจสอบย้อนหลังได้",
+            vendors: ["CyberArk PAM", "Microsoft Entra ID", "SailPoint IAM"]
+          },
+          {
+            name: "Zero Trust Architecture",
+            tag: "Security Model",
+            detail: "แนวคิดความปลอดภัยที่ไม่เชื่อถือ traffic ใดๆ โดยอัตโนมัติแม้จะมาจากภายใน network เดียวกัน ทุก request ต้องถูกตรวจสอบตัวตนและสิทธิ์ทุกครั้ง (never trust, always verify) กำลังเป็นแนวโน้มที่ธนาคารใหญ่นำมาใช้แทนโมเดล perimeter security แบบเดิม",
+            example: "แม้พนักงานจะเชื่อมต่อจาก network ภายในสำนักงาน การเข้าถึงระบบอนุมัติสินเชื่อยังต้องผ่านการยืนยันตัวตนซ้ำ (MFA) ทุกครั้ง ไม่ใช่ไว้ใจเพียงเพราะอยู่ใน network เดียวกัน",
+            vendors: ["Zscaler Zero Trust Exchange", "Palo Alto Prisma Access"]
+          },
+          {
+            name: "Fraud & Risk Engine Integration",
+            tag: "Risk Management",
+            detail: "การเชื่อมต่อ Contact Center/Website กับระบบตรวจจับธุรกรรมผิดปกติแบบ real-time ที่ให้คะแนนความเสี่ยงของแต่ละธุรกรรม เพื่อ block หรือขอยืนยันตัวตนเพิ่มเติมก่อนอนุมัติ",
+            example: "ลูกค้าพยายามโอนเงินจำนวนมากผิดปกติจากอุปกรณ์ใหม่ที่ไม่เคยใช้มาก่อน ระบบ Fraud Engine ให้คะแนนความเสี่ยงสูงและ trigger ให้ต้องยืนยันตัวตนเพิ่มเติมผ่าน Contact Center ก่อนธุรกรรมจะสำเร็จ",
+            vendors: ["FICO Falcon Fraud Manager", "SAS Fraud Management", "Feedzai"]
+          },
+          {
+            name: "Data Masking / Encryption",
+            tag: "Data Protection",
+            detail: "ข้อมูลอ่อนไหว (เลขบัตร, เลขบัญชี, เลขบัตรประชาชน) ที่แสดงบนหน้าจอ agent หรือเว็บไซต์ต้องถูก mask บางส่วน และข้อมูลที่ส่ง/จัดเก็บต้องเข้ารหัสทั้ง in-transit (TLS) และ at-rest",
+            example: "หน้าจอ agent แสดงเลขบัญชีลูกค้าแบบ xxx-x-x1234-x ไม่แสดงเต็ม และการส่งข้อมูลระหว่าง Contact Center Platform กับ Core Banking ต้องเข้ารหัสผ่าน TLS 1.2 ขึ้นไปเสมอ",
+            vendors: ["HashiCorp Vault", "AWS KMS", "Thales CipherTrust"]
+          }
+        ]
+      },
+      {
+        title: "Non-Functional Requirements & Reliability",
+        sub: "คุณสมบัติเชิงระบบที่ต้องกำหนดเป็นมาตรฐานสำหรับระบบ mission-critical",
+        items: [
+          {
+            name: "High Availability / Disaster Recovery",
+            tag: "Reliability",
+            detail: "Contact Center และ Internet Banking เป็นระบบ mission-critical ที่ downtime แม้เพียงไม่กี่นาทีก็กระทบลูกค้าจำนวนมาก ต้องออกแบบ Active-Active หรือ Active-Passive ตาม RTO/RPO ที่ธุรกิจกำหนด",
+            example: "Internet Banking Portal อาจกำหนด RTO (Recovery Time Objective) ไม่เกิน 15 นาที และ RPO (Recovery Point Objective) ใกล้ 0 สำหรับ transaction data ซึ่งต้องมี DR site พร้อม replication แบบ near real-time",
+            vendors: ["VMware Site Recovery Manager", "Multi-region Cloud DR (AKS/EKS)"]
+          },
+          {
+            name: "Scalability (Peak Load)",
+            tag: "Performance",
+            detail: "ปริมาณ traffic ของ Contact Center และ Website ไม่คงที่ มี peak ช่วงเปิดแคมเปญหรือเหตุการณ์พิเศษ (เช่น ระบบขัดข้อง ลูกค้าโทรเข้าจำนวนมาก) ต้องออกแบบให้ scale ได้ทั้ง horizontal scaling ของ agent/dialer capacity และ web infrastructure",
+            example: "Kubernetes ใช้รองรับ auto-scaling ของ web application เมื่อมี traffic spike ช่วงเปิดตัวแคมเปญ ส่วน Contact Center ต้องวางแผน capacity ของ license/seat ล่วงหน้า เพราะ scale ไม่ได้เร็วเท่า cloud infrastructure",
+            vendors: ["Azure AKS Autoscaler", "AWS EKS Cluster Autoscaler"]
+          },
+          {
+            name: "Monitoring & Observability",
+            tag: "Observability",
+            detail: "ต้องมี dashboard ติดตาม SLA แบบ real-time เช่น Average Speed of Answer, Abandon Rate สำหรับ Contact Center และ latency, error rate สำหรับ Website",
+            example: "ใช้ ELK stack (Elasticsearch, Logstash, Kibana) สร้าง dashboard ติดตาม API latency ระหว่าง Web/Contact Center กับ Core Banking และตั้ง alert เมื่อ error rate เกิน threshold",
+            vendors: ["Elastic Stack (ELK)", "Grafana + Prometheus", "Datadog"]
+          },
+          {
+            name: "Capacity Planning",
+            tag: "Cost & Sizing",
+            detail: "การวางแผนขนาดระบบล่วงหน้าให้รองรับ growth ทั้งจำนวน agent seat, concurrent web session, และ API throughput โดยสมดุลกับต้นทุน",
+            example: "การประเมินว่า Contact Center ต้องการกี่ seat license ตาม forecast call volume ในแต่ละไตรมาส และวางแผน cloud cost สำหรับ web infrastructure ที่ scale ตาม traffic แคมเปญ",
+            vendors: ["Azure Cost Management", "AWS Cost Explorer"]
+          },
+          {
+            name: "Performance & Load Testing",
+            tag: "Testing",
+            detail: "การทดสอบระบบภายใต้ภาระงานจำลอง (simulated load) ก่อนขึ้น production เพื่อยืนยันว่าระบบรองรับ concurrent user/transaction ตามที่ออกแบบไว้ได้จริง โดยเฉพาะช่วงก่อนเปิดแคมเปญใหญ่",
+            example: "ก่อนเปิดตัวแคมเปญสินเชื่อออนไลน์ที่คาดว่าจะมีคนเข้าเว็บพร้อมกันหลักหมื่นคน ต้องทำ load test จำลองสถานการณ์นี้ล่วงหน้าเพื่อหา bottleneck ก่อนเกิดปัญหาจริง",
+            vendors: ["Apache JMeter", "Gatling", "k6"]
+          },
+          {
+            name: "Chaos Engineering / Resilience Testing",
+            tag: "Resilience",
+            detail: "การจงใจจำลองความล้มเหลวของระบบ (เช่น ปิด service หนึ่งกะทันหัน) ในสภาพแวดล้อมที่ควบคุมได้ เพื่อตรวจสอบว่าระบบส่วนที่เหลือยัง resilient และ fail gracefully ตามที่ออกแบบไว้จริงหรือไม่",
+            example: "การจำลองสถานการณ์ที่ Core Banking API ตอบช้าผิดปกติ (inject latency) เพื่อทดสอบว่า Circuit Breaker ที่ออกแบบไว้ทำงานถูกต้อง และ agent ยังใช้งานระบบอื่นได้ตามปกติ",
+            vendors: ["Chaos Mesh", "Gremlin"]
+          }
+        ]
+      },
+      {
+        title: "Vendor & Technology Landscape",
+        sub: "ภาพรวมผลิตภัณฑ์จริงในตลาด แบ่งตามหมวดหมู่ เพื่อใช้เปรียบเทียบและคุยกับ vendor",
+        items: [
+          {
+            name: "Contact Center Platform (CCaaS/On-prem)",
+            tag: "Category",
+            detail: "แพลตฟอร์ม Contact Center หลักในตลาด แบ่งเป็นกลุ่ม cloud-native (CCaaS) ที่ scale ง่ายและจ่ายตาม usage กับกลุ่ม on-premise แบบดั้งเดิมที่ควบคุมได้ละเอียดกว่าแต่ scale ช้ากว่า SA ต้องเข้าใจ trade-off ทั้งสองแบบเพื่อเลือกให้เหมาะกับ requirement",
+            example: "ธนาคารที่ต้องการ scale เร็วตามแคมเปญและลดภาระดูแล infrastructure มักเลือก CCaaS เช่น Amazon Connect หรือ Genesys Cloud ส่วนธนาคารที่มี regulation เข้มงวดเรื่อง data residency อาจยังต้องใช้ on-premise",
+            vendors: ["Genesys Cloud CX", "Avaya Experience Platform", "Cisco Webex Contact Center", "Amazon Connect", "NICE CXone"]
+          },
+          {
+            name: "API Gateway / Management Platform",
+            tag: "Category",
+            detail: "เครื่องมือจัดการ API แบบครบวงจร ครอบคลุมทั้งฝั่ง cloud-native และ enterprise on-premise แต่ละตัวมีจุดแข็งต่างกัน เช่น บางตัวเน้น developer experience บางตัวเน้น enterprise governance",
+            example: "องค์กรที่ต้องการ multi-cloud strategy มักเลือก Kong หรือ Apigee ที่ deploy ได้ทั้ง on-premise และ cloud ส่วนองค์กรที่ผูกกับ cloud provider เดียวอาจใช้ native gateway ของ cloud นั้น",
+            vendors: ["Kong Gateway", "Google Apigee", "MuleSoft Anypoint", "WSO2 API Manager", "AWS API Gateway"]
+          },
+          {
+            name: "WAF / Edge Security",
+            tag: "Category",
+            detail: "ผู้ให้บริการด้าน edge security และ WAF หลักในตลาด มักมาพร้อม CDN และ DDoS protection ในแพ็กเกจเดียวกัน ทำให้เลือก vendor เดียวครอบคลุมได้หลายเลเยอร์",
+            example: "ธนาคารหลายแห่งเลือกใช้ Cloudflare หรือ Akamai เพราะครอบคลุมทั้ง CDN, WAF, และ DDoS protection ในสัญญาเดียว ลดความซับซ้อนของการบริหารจัดการ vendor หลายราย",
+            vendors: ["Cloudflare", "Akamai", "F5 BIG-IP", "AWS WAF"]
+          },
+          {
+            name: "CMS Platform",
+            tag: "Category",
+            detail: "ระบบจัดการเนื้อหาเว็บไซต์ แบ่งเป็นกลุ่ม traditional CMS (ผูกกับ front-end) และ headless CMS (แยก content ออกจาก presentation layer ทำให้ใช้ content เดียวกันได้ทั้งเว็บและแอป)",
+            example: "ธนาคารที่ต้องการแสดง content เดียวกันทั้งบนเว็บไซต์และแอปมือถือ มักเลือก headless CMS อย่าง Contentful เพื่อจัดการ content ครั้งเดียวแล้วกระจายไปหลาย channel",
+            vendors: ["Adobe Experience Manager", "Sitecore", "Contentful", "WordPress VIP"]
+          },
+          {
+            name: "CRM Platform",
+            tag: "Category",
+            detail: "ระบบบริหารความสัมพันธ์ลูกค้าที่เป็นศูนย์กลางของข้อมูล Customer 360 เชื่อมกับทั้ง Contact Center และ Website แต่ละ platform มีจุดแข็งต่างกันในเรื่อง customization และ integration ecosystem",
+            example: "ธนาคารขนาดใหญ่มักเลือก Salesforce Service Cloud เพราะมี ecosystem การเชื่อมต่อกว้างขวางและรองรับ Contact Center integration หลายยี่ห้อได้ดี",
+            vendors: ["Salesforce Service Cloud", "Microsoft Dynamics 365", "SAP CRM"]
+          }
+        ]
+      },
+      {
+        title: "Architecture Governance & Documentation",
+        sub: "กระบวนการและเอกสารที่ Solution Architect ต้องผลิตและดูแล",
+        items: [
+          {
+            name: "TOGAF ADM สำหรับงาน Solution Architecture",
+            tag: "Framework",
+            detail: "TOGAF Architecture Development Method มี phase หลักที่ SA ทำงานเชื่อมกับ Enterprise Architect โดยตรง ได้แก่ Phase B (Business Architecture) กำหนดความต้องการทางธุรกิจ, Phase C (Information Systems Architecture) ออกแบบ data และ application, Phase D (Technology Architecture) เลือกเทคโนโลยีที่รองรับ",
+            example: "เมื่อเสนอ solution ใหม่สำหรับ Contact Center ควรทำ Architecture Vision และ Gap Analysis ก่อนนำเสนอต่อผู้บริหารสาย Enterprise Architecture เพื่อให้เห็นว่า solution นี้ align กับ target architecture ระดับองค์กรอย่างไร",
+            vendors: ["TOGAF Standard (Framework ไม่ใช่ผลิตภัณฑ์)"]
+          },
+          {
+            name: "Architecture Decision Record (ADR)",
+            tag: "Documentation",
+            detail: "เอกสารบันทึกการตัดสินใจทางสถาปัตยกรรมที่สำคัญแต่ละครั้ง พร้อมเหตุผลและทางเลือกที่พิจารณา (context, decision, consequences) ช่วยให้ทีมในอนาคตเข้าใจว่าทำไมถึงเลือกแนวทางนี้ ไม่ต้องถามซ้ำหรือเปลี่ยนใจโดยไม่รู้เหตุผลเดิม",
+            example: "ADR บันทึกว่าทำไมเลือกใช้ Kafka แทน RabbitMQ สำหรับ event streaming ของ Contact Center พร้อมเหตุผลเรื่อง throughput และ ecosystem ที่มีอยู่แล้วในองค์กร",
+            vendors: ["ADR Template (Markdown-based, ไม่ใช่ผลิตภัณฑ์)"]
+          },
+          {
+            name: "C4 Model สำหรับเอกสารสถาปัตยกรรม",
+            tag: "Documentation",
+            detail: "แนวทางการวาด diagram สถาปัตยกรรมเป็น 4 ระดับ (Context, Container, Component, Code) ช่วยสื่อสารกับ audience ต่างระดับได้เหมาะสม เช่น Context diagram ใช้คุยกับผู้บริหาร ส่วน Component diagram ใช้คุยกับ dev team",
+            example: "เวลานำเสนอ solution ใหม่ให้ SEVP ควรใช้ Context diagram ระดับสูงที่เห็นภาพรวมระบบ ไม่ใช่ Component diagram ที่ลงรายละเอียดเกินไปสำหรับ audience ระดับนั้น",
+            vendors: ["C4 Model (Notation Standard, ไม่ใช่ผลิตภัณฑ์)"]
+          },
+          {
+            name: "Solution Design Document (SDD)",
+            tag: "Deliverable",
+            detail: "เอกสารหลักที่ SA ต้องผลิตสำหรับทุกโปรเจกต์ ครอบคลุม business requirement, architecture diagram, integration point, security consideration, NFR และ risk/mitigation เป็นเอกสารกลางที่ dev team, security team และ EA ใช้อ้างอิงร่วมกัน",
+            example: "ก่อนเริ่ม development โปรเจกต์ Chatbot ใหม่ ต้องผลิต SDD ที่ระบุชัดเจนว่า bot จะเชื่อมกับระบบใดบ้าง ข้อมูลอะไรที่แลกเปลี่ยน และมาตรการความปลอดภัยอะไรที่ใช้ ก่อนเริ่ม coding",
+            vendors: ["SDD Template (เอกสารภายในองค์กร)"]
+          },
+          {
+            name: "Architecture Review Board (ARB) Process",
+            tag: "Governance",
+            detail: "กระบวนการนำเสนอ solution design ต่อคณะกรรมการสถาปัตยกรรมระดับองค์กรก่อนอนุมัติให้พัฒนาจริง เพื่อตรวจสอบว่า solution สอดคล้องกับมาตรฐานองค์กร ไม่สร้าง technical debt หรือความเสี่ยงที่ไม่จำเป็น",
+            example: "การเสนอเปลี่ยน Contact Center Platform ใหม่ทั้งระบบต้องผ่าน ARB ที่มีตัวแทนจากทั้งฝั่ง Security, Infrastructure และ Enterprise Architecture ร่วมพิจารณาก่อนอนุมัติงบประมาณ",
+            vendors: ["ARB Process (กระบวนการภายในองค์กร)"]
+          }
+        ]
+      },
+      {
+        title: "Knowledge Roadmap ที่ควรเรียนรู้เพิ่ม",
+        sub: "สิ่งที่ควรเรียนรู้เพิ่มเพื่อทำงานในบทบาท Solution Architect สาย Digital Channel ได้ราบรื่น",
+        items: [
+          {
+            name: "Contact Center Platform Concepts",
+            tag: "เรียนรู้เพิ่ม",
+            detail: "ไม่จำเป็นต้องเชี่ยวชาญทุกยี่ห้อ แต่ควรเข้าใจ concept ร่วมของ platform หลักในตลาด เพื่อคุยกับ vendor และทีม Infra ได้อย่างเข้าใจ trade-off",
+            example: "เข้าใจความแตกต่างระหว่าง on-premise platform (Avaya/Cisco แบบดั้งเดิม) กับ cloud-native platform (Amazon Connect/Genesys Cloud) ในแง่ scalability, cost model และ integration pattern",
+            vendors: ["Genesys Cloud CX", "Amazon Connect", "Avaya Experience Platform"]
+          },
+          {
+            name: "BIAN Mapping สำหรับ Contact Center",
+            tag: "Framework",
+            detail: "ในบริบท BIAN Framework นั้น Contact Center จะ map เข้ากับ Service Domain อย่าง 'Party Engagement Management', 'Customer Case Management' และ 'Product Sales Force Support' ควรฝึก mapping process จริงเข้ากับ BIAN service domain เหล่านี้",
+            example: "เมื่อออกแบบ Case Management ให้คิดว่ามัน map กับ BIAN Service Domain ไหน แล้วดูว่า Service Operation ใดที่เกี่ยวข้อง เช่น Initiate, Update, Retrieve เพื่อคุยกับทีม Enterprise Architecture ในภาษาเดียวกัน",
+            vendors: ["BIAN Service Landscape (Framework ไม่ใช่ผลิตภัณฑ์)"]
+          },
+          {
+            name: "Customer Journey / Omnichannel Experience",
+            tag: "Soft Skill + Domain",
+            detail: "SA สาย Digital Channel ต้องเข้าใจพื้นฐาน customer experience design เพื่อคุยกับทีม CX/Marketing ได้ ไม่ใช่มองแค่มุม technical อย่างเดียว ควรเรียนรู้แนวคิด journey mapping และ touchpoint analysis เบื้องต้น",
+            example: "เวลาออกแบบ architecture ต้องตอบคำถามได้ว่า 'ลูกค้าจะรู้สึกอย่างไรตอนสลับจาก Chatbot ไปหา agent จริง' ไม่ใช่แค่คิดเรื่อง API เชื่อมกันสำเร็จหรือไม่",
+            vendors: ["Journey Mapping Methodology (แนวคิด ไม่ใช่ผลิตภัณฑ์)"]
+          },
+          {
+            name: "Web/API Security ระดับลึกขึ้น",
+            tag: "เรียนรู้เพิ่ม",
+            detail: "ควรเสริมความรู้ด้าน security-by-design เช่น OWASP Top 10 สำหรับ web, API security best practice (rate limiting, mTLS), และ threat modeling เบื้องต้น เพื่อคุยกับทีม Security ได้อย่างเข้าใจ",
+            example: "เมื่อ design ใหม่ ควรทำ threat model เบื้องต้นเสมอ เช่น ใครเป็นภัยคุกคามที่เป็นไปได้ (STRIDE model) เพื่อ align กับผลสแกนช่องโหว่จากเครื่องมือจัดการช่องโหว่ (vulnerability management tool) ที่ทีม Security ใช้อยู่",
+            vendors: ["OWASP Top 10", "STRIDE Threat Modeling"]
+          },
+          {
+            name: "TOGAF ADM ในบริบท Digital Channel",
+            tag: "EA Alignment",
+            detail: "ฝึกใช้ TOGAF ADM ในการวาง solution architecture ของ Contact Center/Website ให้ align กับ Enterprise Architecture โดยเฉพาะ phase B, C, D ซึ่งเป็นจุดที่ Solution Architect ทำงานเชื่อมกับ Portfolio และ Enterprise Architect",
+            example: "เมื่อเสนอ solution ใหม่สำหรับ Contact Center ควรทำ Architecture Vision และ Gap Analysis ก่อนนำเสนอ เพื่อให้เห็นว่า solution นี้ align กับ target architecture ระดับองค์กรอย่างไร",
+            vendors: ["TOGAF 10 Standard"]
+          },
+          {
+            name: "Cloud Contact Center Migration",
+            tag: "เรียนรู้เพิ่ม",
+            detail: "แนวโน้มสำคัญของอุตสาหกรรมคือการย้าย Contact Center จาก on-premise ไปสู่ cloud (CCaaS) ควรเข้าใจ migration strategy, data residency consideration สำหรับข้อมูลการเงิน และวิธีประเมิน total cost of ownership เปรียบเทียบระหว่างสองรูปแบบ",
+            example: "การย้ายจาก on-premise Avaya ไปสู่ cloud-native platform ต้องวางแผน phased migration ทีละ business unit พร้อม fallback plan หากเกิดปัญหาระหว่างการย้ายระบบ",
+            vendors: ["Amazon Connect Migration Toolkit", "Genesys Cloud Migration Framework"]
+          }
+        ]
+      }
+    ]
+  }
+];
+
+const groupsWrap = document.getElementById('groupsWrap');
+let activeBranchEl = null;
+
+function buildItemBody(item){
+  const vendorsHtml = item.vendors && item.vendors.length
+    ? '<div class="vendors">' + item.vendors.map(v => '<span class="vendor-chip">' + v + '</span>').join('') + '</div>'
+    : '';
+  return '<p>' + item.detail + '</p>' +
+    '<div class="example"><b>ตัวอย่างในธนาคาร: </b>' + item.example + '</div>' +
+    vendorsHtml;
+}
+
+function renderAll(){
+  groupsWrap.innerHTML = '';
+  let globalIdx = 0;
+  groups.forEach(group => {
+    const groupWrap = document.createElement('div');
+
+    const labelEl = document.createElement('div');
+    labelEl.className = 'group-label';
+    labelEl.textContent = group.label;
+    groupWrap.appendChild(labelEl);
+
+    const gridEl = document.createElement('div');
+    gridEl.className = 'branch-grid';
+
+    const panelsEl = document.createElement('div');
+
+    group.branches.forEach(branch => {
+      const idx = globalIdx++;
+      const card = document.createElement('div');
+      card.className = 'branch-card';
+      card.dataset.idx = idx;
+      card.innerHTML =
+        '<span class="branch-num">0' + (idx < 9 ? '0'+(idx+1) : (idx+1)) + '</span>' +
+        '<p class="branch-title">' + branch.title + '</p>' +
+        '<span class="branch-count">' + branch.items.length + ' หัวข้อ</span>';
+
+      const panel = document.createElement('div');
+      panel.className = 'detail-panel';
+      const header = document.createElement('div');
+      header.className = 'detail-header';
+      header.innerHTML = '<h2>' + branch.title + '</h2><p>' + branch.sub + '</p>';
+      const itemList = document.createElement('div');
+      itemList.className = 'item-list';
+
+      branch.items.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'item-row';
+        row.innerHTML =
+          '<div class="item-head">' +
+            '<span class="item-name">' + item.name + '</span>' +
+            '<span style="display:flex;align-items:center;gap:12px;">' +
+              '<span class="item-tag">' + item.tag + '</span>' +
+              '<span class="chevron"></span>' +
+            '</span>' +
+          '</div>' +
+          '<div class="item-body"><div class="item-body-inner">' + buildItemBody(item) + '</div></div>';
+        row.querySelector('.item-head').addEventListener('click', () => {
+          const wasOpen = row.classList.contains('open');
+          itemList.querySelectorAll('.item-row').forEach(r => r.classList.remove('open'));
+          if(!wasOpen) row.classList.add('open');
+        });
+        itemList.appendChild(row);
+      });
+
+      panel.appendChild(header);
+      panel.appendChild(itemList);
+
+      card.addEventListener('click', () => {
+        const isOpen = panel.classList.contains('open');
+        document.querySelectorAll('.detail-panel.open').forEach(p => p.classList.remove('open'));
+        document.querySelectorAll('.branch-card.active').forEach(c => c.classList.remove('active'));
+        if(!isOpen){
+          panel.classList.add('open');
+          card.classList.add('active');
+          panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+        }
+      });
+
+      gridEl.appendChild(card);
+      panelsEl.appendChild(panel);
+    });
+
+    groupWrap.appendChild(gridEl);
+    groupWrap.appendChild(panelsEl);
+    groupsWrap.appendChild(groupWrap);
+  });
+}
+
+renderAll();
+</script>
+
+</body>
+</html>
