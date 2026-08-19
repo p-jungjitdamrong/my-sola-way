@@ -33,6 +33,10 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          # เปิดใช้งาน GitHub Pages ให้อัตโนมัติถ้ายังไม่เคยเปิด
+          # (ไม่ต้องเข้าไปกดใน Settings > Pages เอง)
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
