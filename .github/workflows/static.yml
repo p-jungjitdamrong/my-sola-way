@@ -36,7 +36,7 @@ jobs:
         with:
           # เปิดใช้งาน GitHub Pages ให้อัตโนมัติถ้ายังไม่เคยเปิด
           # (ไม่ต้องเข้าไปกดใน Settings > Pages เอง)
-          enablement: true
+          enablement: false
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
