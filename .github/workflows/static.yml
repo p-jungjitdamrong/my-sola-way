@@ -1,28 +1,27 @@
-# Simple workflow for deploying static content to GitHub Pages
+# Workflow สำหรับ deploy static content ไปยัง GitHub Pages
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # รันอัตโนมัติทุกครั้งที่ push เข้า branch main
   push:
     branches: ["main"]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # ให้กด Run workflow เองได้จากแท็บ Actions บน GitHub
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# กำหนดสิทธิ์ของ GITHUB_TOKEN ให้ deploy ไปยัง Pages ได้
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# อนุญาตให้มี deployment ที่ทำงานพร้อมกันได้แค่ 1 อัน ต่อคิวรอ
+# ไม่ยกเลิก deployment ที่กำลัง run อยู่ เพื่อให้ deploy จบสมบูรณ์ทุกครั้ง
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -31,13 +30,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # ใส่ path ของโฟลเดอร์ที่มีไฟล์เว็บ (ต้องมี index.html อยู่ข้างใน)
+          # ถ้าไฟล์ HTML อยู่ที่ root ของ repo ให้ใช้ '.'
           path: '.'
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4
